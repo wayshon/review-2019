@@ -5,15 +5,39 @@
  * 答案：[ 1, 12, 2, 8, 3, 11, 4, 9, 5, 13, 6, 10, 7 ]
  */
 const result = [13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
-const calc = () => {
-    const origin = [];
-    for (let i = 0; i < result.length; i++) {
-        if (origin.length > 1) {
-            const item = origin.splice(origin.length - 1, 1)[0];
-            origin.unshift(item);
+// const calc1 = () => {
+//     const origin = [];
+//     for (let i = 0; i < result.length; i++) {
+//         if (origin.length > 1) {
+//             const item = origin.splice(origin.length - 1, 1)[0];
+//             origin.unshift(item);
+//         }
+//         origin.unshift(result[i])
+//     }
+//     return origin;
+// }
+// console.log(calc1());
+
+const calc2 = () => {
+    const originTemp = result.map((v, i) => {
+        return {
+            index: i,
+            value: ''
+        };
+    });
+    const resultTemp = [];
+    let shouldOnDesk = true;
+    while (originTemp.length) {
+        let item = originTemp.splice(0, 1)[0];
+        if (shouldOnDesk) {
+            resultTemp.push(item);
+        } else {
+            originTemp.push(item);
         }
-        origin.unshift(result[i])
+        shouldOnDesk = !shouldOnDesk;
     }
-    return origin;
+    resultTemp.forEach((v, i) => v.value = i + 1);
+    resultTemp.sort((a, b) => a.index - b.index);
+    return resultTemp.map(v => v.value);
 }
-console.log(calc());
+console.log(calc2())
