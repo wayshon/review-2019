@@ -28,28 +28,25 @@ const origin = [
 
 function calc() {
     const result = [];
-    const handle = (val, list) => {
-        console.log(val, list)
-        console.log('=================')
-        const index = list.findIndex(v => Array.isArray(v.nodes))
-        if (index > -1) {
-            handle(val, list[index].nodes);
-        } else {
-            const i = list.findIndex(v => v.id === val.pid);
-            if (i > -1) {
-                if (!Array.isArray(list[i].nodes)) {
-                    list[i].nodes = [];
-                }
-                list[i].nodes.push(val);
+    const handle = (val, item) => {
+        if (val.pid === item.id) {
+            if (!Array.isArray(item.nodes)) {
+                item.nodes = [];
             }
-            return true;
+            item.nodes.push(val);
+        } else if (Array.isArray(item.nodes)) {
+            for (let v of item.nodes) {
+                handle(val, v);
+            }
         }
     }
     for (let val of origin) {
         if (val.pid === 0) {
             result.push(val);
         } else {
-            handle(val, result);
+            for (let item of result) {
+                handle(val, item);
+            }
         }
     }
     return result;
