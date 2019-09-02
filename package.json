@@ -1,0 +1,19 @@
+{
+  "name": "review-2019",
+  "version": "1.0.0",
+  "description": "### 基础",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wayshon/review-2019.git"
+  },
+  "author": "wayshon",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wayshon/review-2019/issues"
+  },
+  "homepage": "https://github.com/wayshon/review-2019#readme"
+}
