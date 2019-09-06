@@ -1,3 +1,1 @@
-console.log(555)
-debugger
-console.log(666)
+setImmediate(() => console.log(666), 500)
