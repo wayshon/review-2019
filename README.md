@@ -9,10 +9,10 @@
 - 见 [v8引擎](./file/v8引擎.md)
 
 #### Promise+ 规范，实现一个Promise
-- 见 [Promise.js](./file/Promise.js)
+- 见 [Promise.js](./js/Promise.js)
 
 #### 链式调用
-- 见 [ChainCall.js](./file/ChainCall.js)
+- 见 [ChainCall.js](./js/ChainCall.js)
 
 #### fluter
 - 见 [fluter](./file/fluter.md)
@@ -24,7 +24,7 @@
 - 见 [shadow-dom](./file/shadow-dom.md)
 
 #### node stream
-- 见 [stream.js](./file/stream.js)
+- 见 [stream.js](./js/stream.js)
 
 #### 性能优化
 - 见 [性能优化](./file/性能优化.md)
@@ -64,7 +64,7 @@
 #### 实现类 redis 的 LocalStorage 
 
 #### 扑克牌问题
-- 见 card-calc.js
+- 见 [card-calc.js](./js/card-calc.js)
 
 ### webpack
 
