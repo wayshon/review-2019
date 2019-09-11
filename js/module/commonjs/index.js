@@ -6,8 +6,7 @@
 // const demo1 = require('./demo1.js');
 // const demo2 = require('./demo2.js');
 // const demo = require('./demo.js');
-import { } from './demo.js'
-console.log('main demo ======   ', demo.val)
-setTimeout(() => {
-    console.log('main demo timeout ======   ', demo.val)
-}, 3000);
+
+var m = require('./even');
+m.even(10)
+console.log(m.counter())
