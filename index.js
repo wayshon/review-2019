@@ -1,1 +1,0 @@
-setImmediate(() => console.log(666), 500)

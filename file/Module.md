@@ -1,0 +1,32 @@
+## export,exports/module.exports,commonjs,amd,es6
+
+#### node_modules 加载的顺序
+- Node.js 源代码的 lib/
+- 当前执行文件同级的 node_modules，没有就继续往上层目录node_modules找
+- 目录作为引用需要在 package.json 里指定 main
+
+#### commonjs
+- 模块第一次加载后会被缓存，多次调用不会被执行多次。
+- 如果想要多次执行一个模块，可以导出一个函数，然后调用该函数。
+- 模块代码执行时是放在函数里作用域执行的`(function(exports, require, module, __filename, __dirname) { //模块代码 });`
+- require.main 是进程入口文件
+- 循环引用时候是先返回部分已执行的部分，另一个模块得到的相当于是部分执行的结果。参考 /module/commonjs
+
+#### requirejs amd
+- 其实就是浏览器端的commonjs，但是浏览器端资源加载是异步的，所以需要搞出个这种依赖规范
+- `<script>`指定`data-main`属性作为入口文件
+- require.config 里定义模块名与映射文件
+- require引入和define引入并导出
+- 当依赖的模块载入后才会执行函数
+
+#### ES6 module
+- ES6 自动采用严格模式，不管有没有写"use strict";arguments,require,module,exports,__filename,__dirname 在 ES6模块中都不存在
+- 同一个模块如果加载多次，也是只执行一次
+- 循环引用的时候
+
+#### commonjs与ES6差异
+- commonjs 是引入整个模块对象，ES6是引入需要的部分
+- ES6 模块之中，顶层的this指向undefined，CommonJS 模块的顶层this指向当前模块
+- commonjs 被引入之后相当于copy一份存在内存中，一个引用的地方修改其他引用的地方也会改变。但是，如果是源文件中延时之类的修改，其他文件里就不会变，因为已经被copy到内存中了，源文件修改也没用
+- es6 因为全是引用而不是copy，所以任何修改都会跟着改变
+- CommonJS 模块是运行时加载，ES6 模块是编译时输出接口。因为CommonJS
