@@ -27,6 +27,9 @@
 #### 性能优化
 - 见 [性能优化](./file/性能优化.md)
 
+#### 浏览器与http缓存
+- 见 [浏览器与http缓存](./file/浏览器与http缓存.md)
+
 #### export,exports/module.exports,commonjs,amd,es6
 - 见 [Module](./file/Module.md)
 
