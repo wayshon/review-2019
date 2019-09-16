@@ -24,14 +24,6 @@
 
 ### 实践
 
-### css
-
-#### bfc 怎么触发
-
-#### background
-
-
-
 ## 心存疑问
 - 网络传输性能检测工具—— chrome 插件 Page Speed
 - vue 是怎么利用 get 和 set 的

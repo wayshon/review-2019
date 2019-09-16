@@ -71,3 +71,19 @@
 - clientWidth, 返回元素的宽度（包括元素宽度、内边距，不包括边框和外边距）
 - style.width, 即 `content-box`, 返回元素的宽度（包括元素宽度，不包括内边距、边框和外边距）
 - scrollWidth, 返回元素的宽度（包括元素宽度、内边距和溢出尺寸，不包括边框和外边距），无溢出的情况，与clientWidth相同
+
+### BFC 块格式化上下文
+封闭健壮，子元素不会影响外部元素，所以不会出现margin重叠等。外部元素也不会影响到子元素，所以可以去除浮动的影响
+
+#### 触发 BFC 条件
+- 浮动元素 float
+- 绝对定位 position: absolute / fixed
+- overflow: hidden / auto / scroll (即除了 visible)
+- display: inline-blocks / table-cells / table-captions
+
+#### 作用
+- 清除浮动
+  - float 会导致元素脱离文档流使父元素塌陷，bfc可以使父元素不塌陷
+  - 避免浮动元素与其他元素重叠，因为BFC的特性不影响别人也不被别人影响
+- 避免margin重叠
+- 避免文字环绕
