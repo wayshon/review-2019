@@ -49,4 +49,5 @@
 - 见 [实践](./file/实践.md)
 
 #### webpack
-- 见 [webpack](./file/webpack.md)
+- 见 [webpack-demo](https://github.com/wayshon/webpack-demo)
+- treeShaking 是把用到的模块保留，无效代码剔除
