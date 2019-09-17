@@ -10,3 +10,22 @@
   - Apply调用：apply第一个参数是要绑定的this的值，第二个是参数数组。
 - 给prototype扩展方法或属性，其他的实例可以直接使用
 - 如果构造函数前没加 new，this就不会绑到新对象上，而是全局对象，污染了全局对象！
+- 切记！<u>函数内部的 this 取决于函数被调用的方式！</u>，如：this.xx(),xx.apply()。理解一下下面的题目
+```
+class Foo {
+    sayThis() {
+        console.log(this); // 这里的 `this` 指向谁？
+    }
+
+    exec(cb) {
+        cb();
+    }
+
+    render() {
+        this.exec(this.sayThis);
+    }
+}
+
+var foo = new Foo();
+foo.render(); 
+```

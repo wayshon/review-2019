@@ -1,47 +1,50 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>demo</title>
-    </head>
-    <style>
-        .shadow {
-            width: 200px;
-            height: 200px;
-            border: 1px solid #000;
-            box-shadow: 0 0 10px 10px red;
-        }
 
-        .border {
-            width: 0;
-            height: 0;
-            border-top: red 50px solid;
-            border-right: blue 100px solid;
-            border-bottom: green 100px solid;
-            border-left: yellow 100px solid;
-        }
+<head>
+    <title>demo</title>
+</head>
+<style>
+    .shadow {
+        width: 200px;
+        height: 200px;
+        border: 1px solid #000;
+        box-shadow: 0 0 10px 10px red;
+    }
 
-        .gradient {
-            width: 600px;
-            height: 600px;
-            background-image: linear-gradient(10deg, red, green, blue, yellow);
-        }
+    .border {
+        width: 0;
+        height: 0;
+        border-top: red 50px solid;
+        border-right: blue 100px solid;
+        border-bottom: green 100px solid;
+        border-left: yellow 100px solid;
+    }
 
-        p:first-child {
-            color: red;
-        }
-        p:nth-child(3) {
-            color: green;
-        }
-        /* p:nth-of-type(3) {
+    .gradient {
+        width: 600px;
+        height: 600px;
+        background-image: linear-gradient(10deg, red, green, blue, yellow);
+    }
+
+    p:first-child {
+        color: red;
+    }
+
+    p:nth-child(3) {
+        color: green;
+    }
+
+    /* p:nth-of-type(3) {
             color: blue;
         } */
 
-        .bg {
-            height: 300px;
-            /* padding: 50px;
+    .bg {
+        height: 300px;
+        /* padding: 50px;
             border: red 50px solid; */
 
-            /* background-color:blue;
+        /* background-color:blue;
             background-size: 200px 200px;
             background-position: top right;
             background-repeat: no-repeat;
@@ -50,30 +53,31 @@
             background-attachment: scroll;
             background-image: url(https://m.hellobike.com/resource/annual2019/AppSelfTaxiAdminWeb/100-%E5%85%8D%E6%8A%BC%E9%87%91.png); */
 
-            /* background: blue url(https://m.hellobike.com/resource/annual2019/AppSelfTaxiAdminWeb/100-%E5%85%8D%E6%8A%BC%E9%87%91.png) 100px 100px no-repeat;
+        /* background: blue url(https://m.hellobike.com/resource/annual2019/AppSelfTaxiAdminWeb/100-%E5%85%8D%E6%8A%BC%E9%87%91.png) 100px 100px no-repeat;
             background-position: top right;
             overflow: hidden; */
-        }
+    }
 
-        .left {
-            float: left;
-            width: 50px;
-            height: 300px;
-            background: green;
-        }
+    .left {
+        float: left;
+        width: 50px;
+        height: 300px;
+        background: green;
+    }
 
-        .right {
-            float: right;
-            width: 50px;
-            height: 300px;
-            background: yellow;
-        }
-    </style>
-    <body>
-        <!-- <div class="shadow"></div> -->
-        <!-- <div class="border"></div> -->
-        <!-- <div class="gradient"></div> -->
-        <!-- <div>666666666666</div>
+    .right {
+        float: right;
+        width: 50px;
+        height: 300px;
+        background: yellow;
+    }
+</style>
+
+<body>
+    <!-- <div class="shadow"></div> -->
+    <!-- <div class="border"></div> -->
+    <!-- <div class="gradient"></div> -->
+    <!-- <div>666666666666</div>
         <p>aaaaaaaaaa</p>
         <p>bbbbbbbbbb</p>
         <div>ccccccccccc</div>
@@ -84,8 +88,54 @@
             document.write('hahaha');
             while(true) {}
         </script> -->
-        <div class="left"></div>
-        <div class="bg"></div>
-        <div class="right"></div>
-    </body>
+    <div class="left"></div>
+    <div class="bg"></div>
+    <div class="right"></div>
+
+    <script>
+        var listStr = new Array(100000).join('-');
+        for(var i = 0; i < 100; i++) {
+            localStorage.setItem('demo'+ i, listStr)
+        }
+
+        // class Storage {
+        //     static set({ key, value, age }) {
+        //         try {
+        //             localStorage.setItem(key, JSON.stringify({
+        //                 value,
+        //                 age: age * 1000 + Date.now(),
+        //             }));
+        //         } catch (e) {
+        //             console.log(e)
+        //             Storage.filterDeadline();
+        //         }
+        //     }
+
+        //     static get(key) {
+        //         const item = JSON.parse(localStorage.getItem(key));
+        //         return item.age < Date.now() ? undefined : item.value;
+        //     }
+
+        //     static filterDeadline() {
+        //         for (let i = localStorage.length - 1; i >= 0; i--) {
+        //             const key = localStorage.key(i);
+        //             const item = JSON.parse(localStorage.getItem(key));
+        //             if (item.age < Date.now()) {
+        //                 localStorage.removeItem(key);
+        //             }
+        //         }
+        //     }
+        // }
+
+        // var listStr = new Array(100000).join('-');
+        // for(var i = 60; i < 160; i++) {
+        //     Storage.set({
+        //         key: 'demo'+ i,
+        //         value: listStr,
+        //         age: 5
+        //     })
+        // }
+    </script>
+</body>
+
 </html>
