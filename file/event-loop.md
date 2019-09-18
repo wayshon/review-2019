@@ -1,8 +1,15 @@
-## nodejs 事件循环
+## event loop
 
 ### 单线程
 - js是单线程，IO操作会阻塞线程，node是把IO操作扔给libuv的线程池处理(一般保持4个线程)
 - 线程池处理好IO之后以事件通知主线程，主线程没有实际操作IO，只负责调度
+
+### 浏览器 event loop
+- 执行同步代码，这属于宏任务
+- 执行栈为空，查询是否有微任务需要执行
+- 执行所有微任务
+- 必要的话渲染 UI
+- 然后开始下一轮 Event loop，执行宏任务中的异步代码
 
 ### Node Event Loop
 - timers **setTimeout和setInterval的回调**
