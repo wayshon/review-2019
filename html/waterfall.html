@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>waterfall</title>
+    <style>
+        .box-wrapper {
+            column-count: 4;
+            column-gap: 10px;
+        }
+
+        .box {
+            height: 123px;
+            padding: 10px;
+            margin-top: 10px;
+            border: 1px solid #000;
+            background: #909090;
+            break-inside: avoid;
+        }
+
+        .wrapper {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+        }
+
+        .item {
+            height: 123px;
+            margin-top: 10px;
+            border: 1px solid #000;
+            background: #909090;
+        }
+
+        .spe {
+            height: 225px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <div class="box-wrapper">
+        <div style="margin-top:0px" class="box"></div>
+        <div class="box spe"></div>
+        <div class="box spe"></div>
+        <div class="box spe"></div>
+        <div class="box spe"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box spe"></div>
+        <div class="box spe"></div>
+    </div> -->
+
+    <div class="wrapper">
+        <div class="item"></div>
+        <div class="item spe"></div>
+        <div class="item spe"></div>
+        <div class="item spe"></div>
+        <div class="item spe"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item spe"></div>
+        <div class="item spe"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item spe"></div>
+        <div class="item spe"></div>
+    </div>
+</body>
+
+</html>
