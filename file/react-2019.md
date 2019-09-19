@@ -1,5 +1,30 @@
 ## 再学 react 之 2019
 
+### Fiber
+
+#### 生命周期的变化
+- Fiber 分为调和(reconciliation)阶段和提交(commit)阶段，
+- 调和阶段: 会被打断，所以下面生命周期会多次执行，导致一些bug
+  - componentWillMount
+  - componentWillReceiveProps
+  - shouldComponentUpdate
+  - componentWillUpdate
+- 提交阶段: 不会被打断，正常执行
+  - componentDidMount
+  - componentDidUpdate
+  - componentWillUnmount
+- 由于调和阶段会被打断，所以react提供了`getDerivedStateFromProps`代替`componentWillReceiveProps`，`getSnapshotBeforeUpdate`代替`componentWillUpdate`
+- getDerivedStateFromProps: 
+  - 并非每次 render 都会执行,严格来说只有父组件导致重新渲染时才会触发
+  - 即使props没有任何变化，而是父state发生了变化，导致子组件发生了re-render，这个生命周期函数依然会被调用
+- getSnapshotBeforeUpdate
+  - 用于获得最新的 DOM 数据
+  - 这个方法会在render之后把渲染结果提交到DOM之前被调用。
+  - 它可以返回一个参数，这个参数被componentDidUpdate(prevProps, prevState, snapshot)方法的第三个参数接收
+
+
+### redux
+
 #### 函数组件
 
 #### react hook
