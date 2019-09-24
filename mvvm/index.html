@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1 id="name"></h1>
+    <h1 id="enname"></h1>
+    <input type="text">
+    <input type="button" value="改变data内容" onclick="changeInput()">
+
+    <script src="./js/observer.js"></script>
+    <script src="./js/watcher.js"></script>
+    <script>
+        class Vue {
+            constructor(data) {
+                this.data = data;
+                //将数据变的可观测，即会触发set和get
+                observable(this.data);
+            }
+        }
+
+        // 实例化vue
+        var myVue = new Vue({
+            name: 'wayshon',
+        });
+
+        // 读到模板时实例化 watcher
+        function initWatcher(key, el) {
+            // 初始化模板数据的值，同时会触发get，但是这个时候还没有把watcher实例挂在Dep.target上
+            el.innerHTML = myVue.data[key];
+            // 这里会实例化一个watcher，并且把watcher塞今deps里面，后面set的时候就会触发watcher更新dom
+            // 这个watcher只关心 name 这个 key
+            new Watcher(myVue.data, key, function (value) {
+                el.innerHTML = value;
+            });
+        }
+
+        // 假装读到 {{ name }} 的时候，建立监听name的更新name的watcher
+        initWatcher('name', document.querySelector('#name'));
+
+        // 假装读到另一个 {{ name }} 的时候，会建立监听 name 更新 enname 的watcher
+        initWatcher('name', document.querySelector('#enname'));
+
+        //改变data内容
+        function changeInput() {
+            myVue.data.name = "难凉热血"
+        }
+
+        const input = document.querySelector('input');
+        //改变输入框内容
+        input.oninput = function (e) {
+            myVue.data.name = e.target.value;
+        }
+    </script>
+</body>
+
+</html>
