@@ -4,7 +4,7 @@
 - 我特么就会画四个三角形，至于为什么三遍和两邻边的诡异情况就不清楚了
 
 #### box-shadow
-- box-shadow: x偏移 y偏移 模糊程度, 宽度, 是否往内
+- box-shadow: x偏移 y偏移 模糊程度, 宽度, 是否往内, 颜色
 
 #### linear-gradient
 - linear-gradient(角度[0为由下往上]，颜色，颜色)
