@@ -11,6 +11,11 @@
 - 必要的话渲染 UI
 - 然后开始下一轮 Event loop，执行宏任务中的异步代码
 
+#### dom渲染
+- 上面说的在微任务后，每一轮 event loop 结尾渲染dom。这里的渲染dom是指渲染页面
+- 实际上浏览器是同步计算dom的，只是计算好，并没有渲染，渲染是延时的，但是同步代码也能拿到更新后的dom信息
+- vue的nextTick是微任务，是在Deps -> watcher触发更新事件后执行的
+
 ### Node Event Loop
 - timers **setTimeout和setInterval的回调**
 - I/O callbacks **除了其他回调之外的几乎所有回调**

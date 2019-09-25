@@ -6,7 +6,7 @@
 - 从上到下，从左到右的深度遍历
 
 #### 生命周期的变化
-- Fiber 分为调和(reconciliation)阶段和提交(commit)阶段，
+- Fiber 分为调和(reconciliation)阶段和提交(commit)阶段
 - 调和阶段: 会被打断，所以下面生命周期会多次执行，导致一些bug
   - componentWillMount
   - componentWillReceiveProps
@@ -17,7 +17,7 @@
   - componentDidUpdate
   - componentWillUnmount
 - 由于调和阶段会被打断，所以react提供了`getDerivedStateFromProps`代替`componentWillReceiveProps`，`getSnapshotBeforeUpdate`代替`componentWillUpdate`
-- getDerivedStateFromProps: 
+- getDerivedStateFromProps:
   - 并非每次 render 都会执行,严格来说只有父组件导致重新渲染时才会触发
   - 即使props没有任何变化，而是父state发生了变化，导致子组件发生了re-render，这个生命周期函数依然会被调用
 - getSnapshotBeforeUpdate
