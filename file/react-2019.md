@@ -2,6 +2,9 @@
 
 ### Fiber
 
+#### virtual dom
+- 从上到下，从左到右的深度遍历
+
 #### 生命周期的变化
 - Fiber 分为调和(reconciliation)阶段和提交(commit)阶段，
 - 调和阶段: 会被打断，所以下面生命周期会多次执行，导致一些bug
