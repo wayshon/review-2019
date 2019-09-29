@@ -1,9 +1,32 @@
 ## 再学 react 之 2019
 
-### Fiber
+### 调度 Fiber
+
+#### 调度实现
+- 任务分片，给每个子任务expriationTime，在过期时间来临前处理更高优先级的任务
+- requestIdleCallback 里执行分片任务
+
+#### expriationTime 优先级
+- expriationTime 其实就是当前时间 + 一个固定时间(根据优先级)
+- 一共有 5 个优先级:
+  - ImmediatePriority = 1 -1
+  - UserBlockingPriority = 2 250
+  - NormalPriority = 3 5000
+  - LowPriority = 4 10000
+  - IdlePriority = 5 1073741823
+
+#### requestIdleCallback
+- 在浏览器空闲时执行，不会对动画和交互产生影响
+- requestIdleCallback 是在浏览器渲染之后执行，也就是说一秒最多回调20次，react 自己实现一个替换了
+- 利用 requestAnimationFrame，它是在渲染前执行，假设1秒60帧,一帧小于16秒剩下的就是空余时间
+- 后台requestAnimationFrame不执行，所以用setTimeout兜底
 
 #### virtual dom
 - 从上到下，从左到右的深度遍历
+- 遇到tagName和key(可能没有)相同就修改属性，继续遍历子树，没有匹配的就删除这个旧的节点
+- 判断列表差异算法实现
+  - 遍历旧的列表，对比哪些节点还存在新的列表中
+  - 遍历新的列表，判断有哪些新增的节点，同时判断老节点的位置是否移动
 
 #### 生命周期的变化
 - Fiber 分为调和(reconciliation)阶段和提交(commit)阶段
