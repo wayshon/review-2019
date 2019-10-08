@@ -102,7 +102,10 @@
 - 没有this的烦恼
 #### state Hook 使用:
 - useState，参数可以是 number,string,object等等, 返回一个数组，数组第一个成员是state的值，第二个是用来更新这个state的函数
+- useState的初始值只在首次渲染的时候有效，后续每次渲染都是返回最新的state
+- this.setState做的是合并状态后返回一个新状态，而 useState是直接替换老状态后返回新状态,set里可以传函数手动合并然后return，或者用useReducer
 - 生命多个state变量就调用多次 useState，参数可以是 number,string,object等等。React 假设当你多次调用 useState 的时候，你能保证每次渲染时它们的调用顺序是不变的,可以使用 eslint-plugin-React-Hooks来强制约束
+- useState只是传值，并没有传key，react是根据useState出现的顺序来找到它对应的state
 - Hook 规则:
   - 1. 只在最顶层使用 Hook。不要在循环，条件或嵌套函数中调用 Hook， 确保总是在你的 React 函数的最顶层调用他们
   - 2. 只在 React 函数中调用 Hook。不要在普通的 JavaScript 函数中调用 Hook
@@ -110,10 +113,41 @@
 - Effect Hook 是每次渲染之后和更新之后都会执行，其实就是componentDidMount，componentDidUpdate 和 componentWillUnmount 这三个函数的组合
 - 如果`useEffect(() => { return });`里return一个函数，useEffect会在每次渲染之前都会执行return的函数，可以用来代替componentWillUnmount,不同的是componentWillUnmount只会执行一次
 - useEffect 每次更新都会执行，浪费性能。`useEffect(() => { return }, [count]);`第二个参数是个数组，里面的值变了才会触发，相当于在`componentDidUpdate(prevProps, prevState)`周期里比较 prevProps.count
+#### Reducer Hook 使用
+- useReducer 则是 hooks 提供的一个类似于 redux 的 api，让我们可以通过 action 的方式来管理 context，或者 state
+- 更适合用于管理包含多个子值的 state 对象
 #### Context Hook 使用
+- 接受一个 context（上下文）对象（从React.createContext返回的值）并返回当前 context 值
+#### hook 是怎么解决共享状态，并且避免高阶组件和渲染属性那种层级嵌套的呢
+- 主要效果是能用到公共的state，能有生命周期，state能驱动组建更新。注意状态是state而不是普通的死数据。
+```
+// Hooks
+import { useState, useEffect } from "react";
+const useHooks = () => {
+  const [data, setData] = useState(null);
+  const fetchData = () => {
+    fetch("/api", params).then(response => {
+      const { data } = data;
+      setData(data);
+    });
+  };
+  useEffect(() => {
+    fetchData();
+  });
+  return data;
+};
+export default useHooks();
 
+// 然后在需要用到的地方
+render() {
+  // 这一行便是调用data的方法了
+  const data = Hooks();
+  return <div>{data}</div>;
+}
+```
 
 #### react 是如何处理事件的
 - 据说有个事件池，在document监听进行集中处理
 
 ### redux
+#### 有个疑问，redux trunk 是怎么注入props的，是不是也是高阶组件
