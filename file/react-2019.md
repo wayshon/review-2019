@@ -91,9 +91,27 @@
 - 接收一个props参数，只关心UI渲染，没有自己的state(react hook可以使它有state)
 - 代码少，没有this，没有各种生命周期
 
-#### react hook
+#### 组件状态共享的方式
+- mixin 已废弃，命名冲突，耦合高，后期难以维护
+- 高阶组件 也就是反继承统一处理状态和生命周期，或者render接收的组件，注入 props。缺点: 层级嵌套多,生命周期钩子函数中会同时做很多事情，难以排错
+- 渲染属性(render props)，A组件接受一个函数参数，给这个函数一个值，render的时候返回这个函数，实际使用的时候这个函数参数可以返回B组件，并把函数参数给B组件props，相当于在要用的B组件外面套一层A组件负责注入props。缺点: 同上
+- react hook
+
+### react hook
 - 函数组件，以前是没有state的，这个可以使函数组件也能有state
-- 未完待续
+- 没有this的烦恼
+#### state Hook 使用:
+- useState，参数可以是 number,string,object等等, 返回一个数组，数组第一个成员是state的值，第二个是用来更新这个state的函数
+- 生命多个state变量就调用多次 useState，参数可以是 number,string,object等等。React 假设当你多次调用 useState 的时候，你能保证每次渲染时它们的调用顺序是不变的,可以使用 eslint-plugin-React-Hooks来强制约束
+- Hook 规则:
+  - 1. 只在最顶层使用 Hook。不要在循环，条件或嵌套函数中调用 Hook， 确保总是在你的 React 函数的最顶层调用他们
+  - 2. 只在 React 函数中调用 Hook。不要在普通的 JavaScript 函数中调用 Hook
+#### Effect Hook 使用
+- Effect Hook 是每次渲染之后和更新之后都会执行，其实就是componentDidMount，componentDidUpdate 和 componentWillUnmount 这三个函数的组合
+- 如果`useEffect(() => { return });`里return一个函数，useEffect会在每次渲染之前都会执行return的函数，可以用来代替componentWillUnmount,不同的是componentWillUnmount只会执行一次
+- useEffect 每次更新都会执行，浪费性能。`useEffect(() => { return }, [count]);`第二个参数是个数组，里面的值变了才会触发，相当于在`componentDidUpdate(prevProps, prevState)`周期里比较 prevProps.count
+#### Context Hook 使用
+
 
 #### react 是如何处理事件的
 - 据说有个事件池，在document监听进行集中处理
