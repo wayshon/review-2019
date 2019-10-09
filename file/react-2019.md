@@ -151,8 +151,16 @@ render() {
 - React.lazy()可以懒加载模块
 - 在使用的时候需要 `<Suspense>` 组建包裹，这个组建其实就是利用了componentDidCatch与getDerivedStateFromProps来抓取渲染时抛出的异常，以为渲染是一次性的，异步渲染会被`<Suspense>`捕捉到，然后等待资源加载完成，`<Suspense>`底下所有的子组件将会被重新渲染
 
-#### react 是如何处理事件的
-- 据说有个事件池，在document监听进行集中处理
+#### react 合成事件
+- 考虑到浏览器的兼容性和性能问题，react拥有自己的事件系统，即合成事件
+- 在document代理监听冒泡事件,将触发的事件存储在事件队列
+- ReactEventListener 维持一个映射保存组件事件监听与处理函数，负责事件注册与分发
+- ReactEventEmitter 负责每个组件上事件的执行
+- 注意:
+  - 合成事件解决了IE兼容性问题，使用stopPropagation()即可禁止事件冒泡。
+  - 阻止 React 合成事件冒泡，并不能阻止原生事件的冒泡，就算使用 stopPropagation 也无法阻止原生事件的冒泡。
+  - 取消原生事件的冒泡也会同时取消 React 事件，并且原生事件的冒泡在 React 事件的触发和冒泡之前
+  - 使用原生事件记得手动移除
 
 ### redux
 #### 有个疑问，redux trunk 是怎么注入props的，是不是也是高阶组件
