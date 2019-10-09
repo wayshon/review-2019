@@ -162,5 +162,8 @@ render() {
   - 取消原生事件的冒泡也会同时取消 React 事件，并且原生事件的冒泡在 React 事件的触发和冒泡之前
   - 使用原生事件记得手动移除
 
-### redux
-#### 有个疑问，redux trunk 是怎么注入props的，是不是也是高阶组件
+### redux, redux-react
+- redux 就是一个状态管理库
+- 单store，dispatch action触发reducer，纯函数reducer返回一个新的值改变state
+- react-redux的connect 负责将state，action注入尽组件的props
+- 我比较喜欢 mobx，因为mobx是proxy拦截，我用不到状态追踪和撤销，所以mobx对于我来说更加灵活
