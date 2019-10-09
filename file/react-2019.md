@@ -104,7 +104,7 @@
 - useState，参数可以是 number,string,object等等, 返回一个数组，数组第一个成员是state的值，第二个是用来更新这个state的函数
 - useState的初始值只在首次渲染的时候有效，后续每次渲染都是返回最新的state
 - this.setState做的是合并状态后返回一个新状态，而 useState是直接替换老状态后返回新状态,set里可以传函数手动合并然后return，或者用useReducer
-- 生命多个state变量就调用多次 useState，参数可以是 number,string,object等等。React 假设当你多次调用 useState 的时候，你能保证每次渲染时它们的调用顺序是不变的,可以使用 eslint-plugin-React-Hooks来强制约束
+- 生命多个state变量就调用多次 useState。React 假设当你多次调用 useState 的时候，你能保证每次渲染时它们的调用顺序是不变的,可以使用 eslint-plugin-React-Hooks来强制约束，所以千万不要在if和for里面使用，因为不能保证每次函数调用时 useState 的顺序
 - useState只是传值，并没有传key，react是根据useState出现的顺序来找到它对应的state
 - Hook 规则:
   - 1. 只在最顶层使用 Hook。不要在循环，条件或嵌套函数中调用 Hook， 确保总是在你的 React 函数的最顶层调用他们
@@ -118,6 +118,7 @@
 - 更适合用于管理包含多个子值的 state 对象
 #### Context Hook 使用
 - 接受一个 context（上下文）对象（从React.createContext返回的值）并返回当前 context 值
+- 可以避免通过render props那种组建嵌套才能获取到多个组建的context,通过 useContext 可以直接返回
 #### hook 是怎么解决共享状态，并且避免高阶组件和渲染属性那种层级嵌套的呢
 - 主要效果是能用到公共的state，能有生命周期，state能驱动组建更新。注意状态是state而不是普通的死数据。
 ```
@@ -145,6 +146,10 @@ render() {
   return <div>{data}</div>;
 }
 ```
+
+#### suspense 异步渲染
+- React.lazy()可以懒加载模块
+- 在使用的时候需要 `<Suspense>` 组建包裹，这个组建其实就是利用了componentDidCatch与getDerivedStateFromProps来抓取渲染时抛出的异常，以为渲染是一次性的，异步渲染会被`<Suspense>`捕捉到，然后等待资源加载完成，`<Suspense>`底下所有的子组件将会被重新渲染
 
 #### react 是如何处理事件的
 - 据说有个事件池，在document监听进行集中处理
