@@ -57,6 +57,7 @@
 #### webpack
 - 见 [webpack-demo](https://github.com/wayshon/webpack-demo)
 - treeShaking 是把用到的模块保留，无效代码剔除
+- HappyPack 可以多进程执行webpack打包，比如plugin等。因为webpack运行在nodejs环境是单线程的，通过HappyPack可以多进程利用多核加速打包
 
 #### https加密流程
 - 见 [https加密流程](./file/https加密流程.md)
