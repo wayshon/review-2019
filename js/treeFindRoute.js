@@ -139,7 +139,7 @@ const findAll = function (array, targetId) {
 
 const results1 = findOne(citys, '666');
 console.log(results1)
-// [ '1', '12', '122', '666', '13', '666', '666' ]
+// [ '1', '12', '122', '666' ]
 
 const results2 = findAll(citys, '666');
 console.log(results2)
