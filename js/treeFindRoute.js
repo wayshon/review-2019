@@ -74,16 +74,13 @@ const citys = [{
  * 每次遍历到一个一个节点:
  * 1. 如果符合就推入栈，结束
  * 2. 如果不符合，但是有子节点，也把这个节点推入栈，继续遍历子节点
- * 3. 一轮循环结束后把栈末尾节点推出去，因为这个节点的子节点能循环完说明没有匹配到，所以这个节点也不是正确的路径
+ * 3. 一轮循环结束后，如果未 isComplete 找到匹配的，就把栈末尾节点推出去，因为这个节点的子节点能循环完说明没有匹配到，所以这个节点也不是正确的路径
  */
 const findOne = function (array, targetId) {
     const results = [];
     let isComplete = false;
 
     const fn = function (list) {
-        if (isComplete) {
-            console.log(list)
-        };
         for (let v of list) {
             if (isComplete) return;
             if (v.id === targetId) {
@@ -95,10 +92,9 @@ const findOne = function (array, targetId) {
                 fn(v.children)
             }
         }
-        if (isComplete) {
-            console.log('=========  ', list)
-        };
-        results.pop();
+        if (!isComplete) {
+            results.pop();
+        }
     }
     fn(array);
 
