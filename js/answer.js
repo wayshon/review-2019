@@ -65,3 +65,67 @@
 // }
 // const s = 'abbkejsbcccwqaa'
 // console.log(findStringNum(s));
+
+/**************************************** 125题 数组转tree */
+// const listTree = [{
+//     id: 1
+// }, {
+//     id: 2,
+//     pId: 1
+// }, {
+//     id: 3,
+//     pId: 1
+// }, {
+//     id: 4,
+//     pId: 2
+// }, {
+//     id: 2,
+//     pId: 1
+// }, {
+//     id: 5
+// }
+// ];
+// // 转成数组tree，并去重
+// // [{"id":1,"children":[{"id":2,"pId":1,"children":[{"id":4,"pId":2}]},{"id":3,"pId":1}]},{"id":5}]
+
+// function list2tree(list) {
+//     const result = [];
+
+//     let hasInsert = false;
+
+//     const find = function (array, item) {
+//         for (let v of array) {
+//             if (hasInsert) {
+//                 return;
+//             }
+//             if (v.id === item.pId) {
+//                 if (!v.children) {
+//                     v.children = [];
+//                 }
+//                 hasInsert = true;
+//                 if (!v.children.some(val => val.id === item.id)) {
+//                     v.children.push(item);
+//                 }
+//                 return;
+//             } else if (v.children && !hasInsert) {
+//                 find(v.children, item);
+//             }
+//         }
+//     }
+
+//     for (let v of list) {
+//         hasInsert = false;
+//         if (!v.pId) {
+//             result.push(v);
+//         } else {
+//             find(result, v);
+//             if (!hasInsert && !result.some(val => val.id === v.id)) {
+//                 result.push(v);
+//             }
+//         }
+//     }
+
+//     return result;
+// }
+// const result = fn(listTree);
+// console.log(JSON.stringify(result))
