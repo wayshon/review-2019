@@ -37,3 +37,31 @@
 // const list2 = ['A', 'B', 'C', 'D'];
 // const result = contact(list1, list2);
 // console.log(result)
+
+/********** 找出字符串中连续出现最多的字符和个数 */
+// /*
+// 'abcaakjbb' => {'a':2,'b':2}
+// 'abbkejsbcccwqaa' => {'c':3}
+// */
+// function findStringNum(str) {
+//     const map = {};
+//     const list = str.split('');
+//     let max = 0;
+//     for (let i = 0; i < list.length; i++) {
+//         if (i > 0 && list[i] === list[i - 1]) {
+//             map[list[i]] += 1;
+//         } else {
+//             map[list[i]] = 1;
+//         }
+//         max = map[list[i]] > max ? map[list[i]] : max;
+//     }
+//     const result = {};
+//     for (let key in map) {
+//         if (map[key] === max) {
+//             result[key] = map[key];
+//         }
+//     }
+//     return result;
+// }
+// const s = 'abbkejsbcccwqaa'
+// console.log(findStringNum(s));
