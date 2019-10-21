@@ -88,3 +88,16 @@
 - 避免margin重叠
 - 避免文字环绕
   - float元素会覆盖在普通元素上，但是文本行块不可覆盖，所以会出现文字收缩环绕 float 元素的情况。给元素加上 bfc就不会环绕float元素了
+
+#### grid布局
+- 设置几行几列的宽/高: grid-template-rows,grid-template-columns;可以是数值、百分比、fr比例、auto、repeat/minmax函数;两端固定中间拉伸的效果也可以用grid实现
+- gap设置间隙
+- grid-template-areas设置区域名称，item的属性里可以指定当前item放在哪个area
+- grid-auto-flow 横向排列和竖向排列; dense 紧凑利用空隙
+- justify-items/align-items/place-items 设置单元格内容的水平/垂直位置
+- justify-content/align-content/place-content 整个内容区域在container里的水平/垂直位置
+- grid-auto-columns,grid-auto-rows 超过区域的自动添加的item宽高，不写就用默认的item内容大小设置
+- grid-column-start/grid-column-end/grid-row-start/grid-row-end item根据网格线定位;grid-column/grid-row 缩写
+- grid-area 指定item放在哪个area
+- justify-self/align-self/place-self 设置单元格内容的位置
+- 参考 [阮一峰 grid-layout-tutorial](http://www.ruanyifeng.com/blog/2019/03/grid-layout-tutorial.html)
