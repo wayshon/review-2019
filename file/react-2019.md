@@ -167,3 +167,10 @@ render() {
 - 单store，dispatch action触发reducer，纯函数reducer返回一个新的值改变state
 - react-redux的connect 负责将state，action注入尽组件的props
 - 我比较喜欢 mobx，因为mobx是proxy拦截，我用不到状态追踪和撤销，所以mobx对于我来说更加灵活
+
+#### redux-thunk
+- 正常的action返回一个对象，因为reducer只接收纯更新值的行为，遇到函数就懵逼了
+- redux-thunk 作为redux的中间件，可以在触发action之后到达reducer值钱搞一些骚操作
+- 使用redux-thunk后，action可以直接返回一个函数，redux-thunk获取的到如果是普通对象直接next，如果是函数，就执行它，并把dispatch传给这个函数
+- 这样action就可以返回一个异步操作了，return 一个接受dispatch的函数，在异步结果里dispatch就行了，而不用必须return对象
+- 例子，多个地方dispatch showLoading，settimeout hide。这会重复些很多settimeout代码。如果hide放在action里就可以返回异步函数settime来hide
