@@ -12,9 +12,15 @@ var arr = [0,1,2,1,0,2]
 // }
 
 // 插入
-for (let i = 1; i < arr.length; i++) {
-    
-}
+// let j;
+// for (let i = 1; i < arr.length; i++) {
+//     let temp = arr[i];
+//     for (j = i - 1; temp < arr[j]; j--) {
+//         arr[j + 1] = arr[j];
+//     }
+//     console.log(j)
+//     arr[j] = temp;
+// }
 
 
 
