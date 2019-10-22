@@ -47,25 +47,26 @@ const weight = 10;
  */
 function pack(weights, values, weight) {
     const table = [];
-
     let index;
-    // 开始步骤1，尝试第一个物品，并得出它在所有容量下的价值
-    index = 0;
-    table[index] = []; // 给第一个物品一个它所有容量下的价值队列
-    for (let tempWeight = 1; tempWeight <= weight; tempWeight++) {
-        if (weights[index] > tempWeight) {
-            // 如果物品重量大于当前容量，当前容量下价值就为 0
-            table[index][tempWeight] = 0;
-        } else {
-            // 因为是第一个物品，当前容量下的价值就是物品的价值
-            table[index][tempWeight] = values[index];
-        }
-    }
 
-    // 步骤2，每次有新的物品进来，就给他新的队列，并计算它各种容量下的价值
-    for (index = 1; index < weights.length; index++) {
+    for (index = 0; index < weights.length; index++) {
+        // 每次有新的物品进来，就给他新的队列
         table[index] = [];
+
         for (let tempWeight = 1; tempWeight <= weight; tempWeight++) {
+            // 步骤1，尝试第一个物品，并得出它在所有容量下的价值
+            if (index === 0) {
+                if (weights[index] > tempWeight) {
+                    // 如果物品重量大于当前容量，当前容量下价值就为 0
+                    table[index][tempWeight] = 0;
+                } else {
+                    // 因为是第一个物品，当前容量下的价值就是物品的价值
+                    table[index][tempWeight] = values[index];
+                }
+                continue;
+            }
+
+            // 步骤2，后面进来的物品，当前容量价值就需要参考之前的价值
             if (weights[index] > tempWeight) {
                 // 如果物品重量大于当前容量就不塞入，价值还是上次这个容量下的价值
                 table[index][tempWeight] = table[index - 1][tempWeight];
@@ -78,6 +79,7 @@ function pack(weights, values, weight) {
             }
         }
     }
+
     console.log(table)
     // 最后一个物品处理完后，最后的重量 weight 就是我们需要的价值
     return table[index - 1][weight];
