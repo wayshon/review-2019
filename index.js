@@ -1,16 +1,21 @@
-// 求两个日期中间的有效日期
-// 如 2015-2-8 到 2015-3-3，返回【2015-2-8 2015-2-9...】
+var arr = [0,1,2,1,0,2]
 
-function calcDate(s, e) {
-    const result = [];
-    const start = new Date(s);
-    const end = new Date(e);
-    let temp = start;
-    while (end.getTime() >= temp.getTime()) {
-        result.push(temp.toLocaleDateString().replace('/', '-'));
-        let next = temp.getTime() + (1000 * 60 * 60 * 24);
-        temp = new Date(next);
-    }
-    return result;
+// 冒泡
+// for (let i = 0; i < arr.length - 1; i++) {
+//     for (let j = i + 1; j < arr.length; j++) {
+//         if (arr[i] > arr[j]) {
+//             let t = arr[i];
+//             arr[i] = arr[j];
+//             arr[j] = t;
+//         }
+//     }
+// }
+
+// 插入
+for (let i = 1; i < arr.length; i++) {
+    
 }
-console.log(calcDate('2012-2-26', '2012-3-3'));
+
+
+
+console.log(arr);
