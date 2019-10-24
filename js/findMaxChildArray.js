@@ -32,7 +32,7 @@ const arr = [-1, 4, 2, -1, 2, -1];
 //     return max;
 // }
 
-// 连续的子数组
+// 连续的子数组，伪动态规划，我自己都没搞清楚
 function fn(list) {
     const table = [];
     let max = list[0];
@@ -58,6 +58,27 @@ function fn(list) {
     console.log(table);
     return list.slice(end - len, end + 1);
 }
+
+// 暴力求解
+function fu(list) {
+    let max = list[0];
+    let index = 0;
+    let length = 1;
+    let len = 1;
+    while (len <= list.length) {
+        for (let i = len; i <= list.length; i++) {
+            let sum = list.slice(i - len, len).reduce((a,b) => a+b, 0);
+            if (sum > max) {
+                max = sum;
+                index = i;
+                length = len;
+            }
+        }
+        len++;
+    }
+    return list.slice(index - length, length);
+}
+
 
 console.log(fn(arr))
 
