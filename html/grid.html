@@ -5,26 +5,31 @@
             .container {
                 display: grid;
                 /* grid-template-columns: repeat(auto-fill, 100px); */
-                grid-template-columns: 30px auto 30px;
-                grid-template-rows: 100px 100px 100px;
+                grid-template-columns: 30px 30px;
+                grid-template-rows: 100px 100px;
+                grid-template-areas:
+                                    "a a"
+                                    "b c";
             }
 
-            .item {
+            .item-a {
+                grid-area: 'a';
+            }
 
+            .item-b {
+                grid-area: 'b';
+            }
+
+            .item-c {
+                grid-area: 'c';
             }
         </style>
     </head>
     <body>
         <div class="container">
-            <div class="item">1</div>
-            <div class="item">2</div>
-            <div class="item">3</div>
-            <div class="item">4</div>
-            <div class="item">5</div>
-            <div class="item">6</div>
-            <div class="item">7</div>
-            <div class="item">8</div>
-            <div class="item">9</div>
+            <div class="item-a">1</div>
+            <div class="item-b">2</div>
+            <div class="item-c">3</div>
         </div>
     </body>
 </html>

@@ -101,3 +101,17 @@
 - grid-area 指定item放在哪个area
 - justify-self/align-self/place-self 设置单元格内容的位置
 - 参考 [阮一峰 grid-layout-tutorial](http://www.ruanyifeng.com/blog/2019/03/grid-layout-tutorial.html)
+
+#### 实现一个 Modal
+- 打开:
+  - 创建一个div M，使用 fixed 定位，appendChild 到 root
+  - 可以通过设置top实现弹出效果
+  - 给父容器设置 fixed 定位. 注: 不然 M 滚动的时候会穿透导致 root 也会滚动
+  - 给父容器的top设置成当前父容器已经滚动的距离 documentElement.scrollTop. 注: 不然 root 设置了 fixed 会自动滚动到顶部
+- 关闭:
+  - 获取 class modal 最上层那个，因为我们可能弹出了多个modal
+  - 可以设置 top 动效隐藏 modal
+  - 获取 root 的style.top 作为 scrollY，这是之前 root 的滚动距离
+  - 将 root 的style.top 设置为 0，并将 position 恢复成 static
+  - `window.scrollTo(0, scrollY)`将root滚动至之前的 scrollY
+  - 最后将modal从root中removeChild
