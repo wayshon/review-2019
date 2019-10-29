@@ -8,3 +8,4 @@
 
 ### 遇到的难点
 - position fixed 会导致滚动穿透，父容器也fixed会导致滚动高度没了
+- transform会将 fixed 变成 absolute
