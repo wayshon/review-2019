@@ -1,18 +1,11 @@
-function A() {
-    this.a = 11
+class P {
+    constructor() {
+        this.age = 1;
+        return {
+            age: 6
+        }
+    }
 }
 
-A.prototype.aa = 22;
-
-function B() {
-    this.b = 33
-}
-
-B.prototype.bb = 44;
-
-
-var c = new A();
-c.__proto__ = B.prototype;
-console.log(c.__proto__);
-console.log(c.__proto__ === A.prototype);
-console.log(c.__proto__ === B.prototype);
+let p = new P()
+console.log(p)

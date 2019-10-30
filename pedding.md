@@ -4,8 +4,10 @@
 
 ### 总结一下自己封装的react
 
-### 背一下快排
-
 ### 遇到的难点
 - position fixed 会导致滚动穿透，父容器也fixed会导致滚动高度没了
 - transform会将 fixed 变成 absolute
+
+### 复习了还是不会的
+- 数组自身移动 快排
+- 实现 promise
