@@ -8,6 +8,15 @@
 - position fixed 会导致滚动穿透，父容器也fixed会导致滚动高度没了
 - transform会将 fixed 变成 absolute
 
-### 复习了还是不会的
+#### 复习进度
+- 算法
+- 题目
+- 性能优化
+- css
+- react
+- v8引擎
+- vue
+
+#### 复习了还是不会的
 - 数组自身移动 快排
 - 实现 promise
