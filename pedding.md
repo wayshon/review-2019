@@ -1,12 +1,10 @@
 ## 未完成
 
-### 自己的博客与笔记
+### 总结一下垃圾分类的亮点
 
 ### 总结一下自己封装的react
 
-### 遇到的难点
-- position fixed 会导致滚动穿透，父容器也fixed会导致滚动高度没了
-- transform会将 fixed 变成 absolute
+### 总结一下即刻出行的亮点
 
 #### 复习进度
 - 算法
@@ -19,3 +17,8 @@
 - 三色gc
 - vue 响应式原理
 - 整个react
+
+### 遇到的难点
+- position fixed 会导致滚动穿透，父容器也fixed会导致滚动高度没了
+- transform会将 fixed 变成 absolute
+
