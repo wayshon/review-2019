@@ -71,7 +71,7 @@ const resultBFS = bfs(tree).map(v => v.value);
 console.log(resultBFS);
 
 /**
- * 广度遍历1
+ * 广度遍历
  * 一层一层遍历，将遍历到的节点塞进queue
  * 每轮循环后又从这轮循环的第一个节点的子节点开始循环，不停的往queue塞，queue的顺序就是广度遍历的顺序
  * 每轮循开始时又不停的从queue头部取出节点，通过queue.length控制循环
@@ -97,34 +97,5 @@ function dfs(node) {
     return results;
 }
 
-/**
- * 广度遍历2
- * 递归遍历
- * 也是一层一层遍历
- * 先遍历第一层，逐个塞进results
- * 再遍历每个节点的子节点，相当于是第二层，重复此操作
- * @param {*} node 
- */
-function dfs2(node) {
-    const results = [];
-    const deep = (list) => {
-        for (let i = 0; i < list.length; i++) {
-            results.push(list[i]);
-        }
-        for (let i = 0; i < list.length; i++) {
-            if (list[i].children) {
-                deep(list[i].children);
-            }
-        }
-    }
-    results.push(node);
-    if (node.children) {
-        deep(node.children);
-    }
-    return results;
-}
-
-const resultDFS1 = dfs(tree).map(v => v.value)
-console.log(resultDFS1);
-const resultDFS2 = dfs2(tree).map(v => v.value)
-console.log(resultDFS2);
+const resultDFS = dfs(tree).map(v => v.value)
+console.log(resultDFS);
