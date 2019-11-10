@@ -1,15 +1,23 @@
 const markString = `
+    #### 标题4.1
+    444444444444444
+    #### 标题4.2
+    444444444444444
+    ### 标题3.1
+    333333333333333
+    #### 标题4.3
+    444444444444444
     # 标题1.1
     111111111111111
     ## 标题2.1
     222222222222222
-    ### 标题3.1
-    333333333333333
     ### 标题3.2
     333333333333333
-    #### 标题4
-    444444444444444
     ### 标题3.3
+    333333333333333
+    #### 标题4.4
+    444444444444444
+    ### 标题3.4
     333333333333333
     ###### 标题6
     666666666666666
@@ -49,7 +57,7 @@ const fn = function (string) {
             title: v.substring(level + 1),
             children: []
         }
-        if (level === 1) {
+        if (level === 1 || !result.length || item.level <= result[result.length - 1].level) {
             result.push(item);
         } else {
             find(result[result.length - 1], item);
@@ -60,4 +68,4 @@ const fn = function (string) {
 }
 
 const result = fn(markString);
-console.log(result)
+console.log(JSON.stringify(result))
