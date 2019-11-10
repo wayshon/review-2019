@@ -15,5 +15,5 @@
 - transform会将 fixed 变成 absolute
 
 ### 有空再写
-- 在数组中找出和为指定值的所有子元素
+- 在数组中找出和为指定值的所有子元素 [findNum.js](../js/findNum.js)
 
