@@ -87,21 +87,50 @@
 // console.log(JSON.stringify(results))
 
 
+// const getChildArray = function (array) {
+//     const results = [];
+//     for (let v of array) {
+//         results.push([v]);
+//     }
+//     const len = array.length;
+//     for (let i = 0; i < len - 1; i++) {
+//         let count = 3;
+//         while (count < len) {
+//             let index = 
+//             count++;
+//         }
+//     }
+//     return results;
+// }
+
 const getChildArray = function (array) {
     const results = [];
-    for (let v of array) {
-        results.push([v]);
-    }
-    const len = array.length;
-    for (let i = 0; i < len - 1; i++) {
-        let count = 1;
-        while (count < len) {
-
-            count++;
+    
+    const find = (arr, position, isIns) => {
+        if (position === arr.length) {
+            const list = [];
+            for (let i = 0; i < arr.length; i++) {
+                if (isIns[i]) {
+                    list.push(arr[i]);
+                }
+            }
+            results.push(list);
+        } else {
+            isIns[position] = true;
+            find(arr, position + 1, isIns);
+            isIns[position] = false;
+            find(arr, position + 1, isIns);
         }
     }
+
+    const booleans = [];
+    find(array, 0, booleans);
+
     return results;
 }
 
 const list = [1, 2, 3, 4, 5];
+// 12,13,14,15,23,24,25,34,35,45
+// 123,124,125,134,135,145,234,235,245,345
+// 1234,1235,1245,1345,2345
 console.log(getChildArray(list))
