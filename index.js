@@ -103,50 +103,58 @@
 //     return results;
 // }
 
-// const getChildArray = function (array) {
-//     const results = [];
-
-//     const find = (arr, position, isIns) => {
-//         if (position === arr.length) {
-//             const list = [];
-//             for (let i = 0; i < arr.length; i++) {
-//                 if (isIns[i]) {
-//                     list.push(arr[i]);
-//                 }
-//             }
-//             results.push(list);
-//         } else {
-//             isIns[position] = true;
-//             find(arr, position + 1, isIns);
-//             isIns[position] = false;
-//             find(arr, position + 1, isIns);
-//         }
-//     }
-
-//     const booleans = [];
-//     find(array, 0, booleans);
-
-//     return results;
-// }
-
 const getChildArray = function (array) {
     const results = [];
-    const len = Math.pow(2, array.length) - 1;
-    for (let i = 1; i <= len; i++) {
-        const t = [];
-        for (let s = i, k = 0; s > 0; s >>= 1, k++) {
-            // console.log(s.toString(2), s & 1)
-            if (s & 1 == 1) {
-                console.log(array[k]);
-                t.push(array[k]);
+
+    const find = (arr, position, isIns) => {
+        console.log('arr *****************  ', arr)
+        console.log('position *****************  ', position)
+        console.log('isIns *****************  ', isIns)
+        if (position === arr.length) {
+            const list = [];
+            console.log('arr  ---------------------------------------  ', arr)
+            console.log('isIns  ---------------------------------------  ', isIns)
+            for (let i = 0; i < arr.length; i++) {
+                if (isIns[i]) {
+                    list.push(arr[i]);
+                }
             }
+            console.log('list  ---------------------------------------  ', list)
+            results.push(list);
+        } else {
+            isIns[position] = true;
+            console.log('f1 ========================')
+            find(arr, position + 1, isIns);
+            isIns[position] = false;
+            console.log('f2 ========================')
+            find(arr, position + 1, isIns);
         }
-        results.push(t);
     }
+
+    const booleans = [];
+    find(array, 0, booleans);
+
     return results;
 }
 
-const list = [1, 2, 3, 4, 5];
+// const getChildArray = function (array) {
+//     const results = [];
+//     const len = Math.pow(2, array.length) - 1;
+//     for (let i = 1; i <= len; i++) {
+//         const t = [];
+//         for (let s = i, k = 0; s > 0; s >>= 1, k++) {
+//             // console.log(s.toString(2), s & 1)
+//             if (s & 1 == 1) {
+//                 console.log(array[k]);
+//                 t.push(array[k]);
+//             }
+//         }
+//         results.push(t);
+//     }
+//     return results;
+// }
+
+const list = [1, 2, 3];
 // 12,13,14,15,23,24,25,34,35,45
 // 123,124,125,134,135,145,234,235,245,345
 // 1234,1235,1245,1345,2345
