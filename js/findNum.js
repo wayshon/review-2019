@@ -16,64 +16,85 @@ const nums = [2, 7, 1, 2, 10, 9, 4, 5, 5, 6, 7], target = 9;
 function calc(list, t) {
     const results = [];
 
-    const getChildArray = function (array) {
-        const results = [];
-        for (let v of array) {
-            results.push([v]);
-        }
-        const len = array.length;
-        for (let i = 0; i < len - 1; i++) {
-            let count = 1;
-            while (count < len - 1) {
-                const current = array.slice(i, i + count);
-                for (let j = i + count; j < array.length; j++) {
-                    results.push(current.concat(array[j]));
-                }
-                count++;
-            }
-        }
-        return results;
-    }
-
-    const find = (arr) => {
-        const base = arr.shift();
-        const stack = [];
-
-        if (base === t) {
-            stack.push(base);
-            results.push(stack);
-            return;
-        }
-
-        for (const v of arr) {
-            if (base + v === t) {
-                results.push([base, v]);
-                continue;
-            }
-            const sum = stack.reduce((a, b) => a + b, base + v);
-            if (sum === t) {
-                results.push([base, ...stack, v]);
-            } else if (sum < t) {
-                stack.push(v);
-            } else {
-                const childs = getChildArray(stack);
-                for (const child of childs) {
-                    const s = child.reduce((a, b) => a + b, base + v);
-                    if (s === t) {
-                        results.push([base, ...child, v]);
-                    }
-                }
-            }
+    const childrens = getChildArray(list);
+    for (const arr of childrens) {
+        if (arr.reduce((a, b) => a + b, 0) === t) {
+            results.push(arr);
         }
     }
-
-    for (let i = 0; i < list.length; i++) {
-        find(list.slice(i));
-    }
-
     return results;
 }
 
 const results = calc(nums, target);
 
 console.log(JSON.stringify(results))
+
+/**
+ * 抄的，没整明白
+ */
+// const getChildArray = function (array) {
+//     const results = [];
+
+//     const find = (arr, position, isIns) => {
+//         if (position === arr.length) {
+//             const list = [];
+//             for (let i = 0; i < arr.length; i++) {
+//                 if (isIns[i]) {
+//                     list.push(arr[i]);
+//                 }
+//             }
+//             results.push(list);
+//         } else {
+//             isIns[position] = true;
+//             find(arr, position + 1, isIns);
+//             isIns[position] = false;
+//             find(arr, position + 1, isIns);
+//         }
+//     }
+
+//     const booleans = [];
+//     find(array, 0, booleans);
+
+//     return results;
+// }
+
+/**
+ * 抄的，没整明白
+ */
+// const getChildArray = function (array) {
+//     const results = [];
+//     const len = Math.pow(2, array.length) - 1;
+//     for (let i = 1; i <= len; i++) {
+//         const t = [];
+//         for (let s = i, k = 0; s > 0; s >>= 1, k++) {
+//             // console.log(s.toString(2), s & 1)
+//             if (s & 1 == 1) {
+//                 console.log(array[k]);
+//                 t.push(array[k]);
+//             }
+//         }
+//         results.push(t);
+//     }
+//     return results;
+// }
+
+/**
+ * 思路:
+ * 设置初始二维数组：[ [ ] ] 。依次把每个数加入到数组中的每一个元素中，并保留原来的所有元素
+ * 例如输入为nums = [1, 2, 3]。
+ * 对于数字1，加入到[ ]中，成为[1]，此时结果数组为[[ ], [1]]
+ * 对于数字2，加入到[ ]和[1]中，成为[2],[1,2]，此时结果数组为[[ ], [1], [2], [1,2]]
+ * 最后把开头用来塞数的空数组去掉，得到正确结果
+ */
+function getChildArray(array) {
+    let results = [[]];
+    for (let v of array) {
+        const list = [];
+        for (let items of results) {
+            list.push(items.concat(v));
+        }
+        results = results.concat(list);
+    }
+    results.shift();
+    return results;
+}
