@@ -12,7 +12,6 @@ class Watcher {
         return value;
     }
     update() {
-        console.log('触发了 update  ----  ', this.key);
         let value = this.data[this.key];
         let oldVal = this.value;
         if (value !== oldVal) {
